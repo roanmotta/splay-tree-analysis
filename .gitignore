@@ -1,0 +1,13 @@
+# classes compiladas
+*.class
+
+# pastas de build/gradle
+bin/
+build/
+out/
+.gradle/
+
+# ides e outras
+.idea/
+.vscode/
+*.iml

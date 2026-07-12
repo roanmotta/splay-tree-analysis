@@ -132,7 +132,7 @@ public class SplayTree <T extends Comparable<T>> {
     public void add (T value) {
 
         if (isEmpty()) {
-            this.root = new Node(value);
+            this.root = new Node<T>(value);
         }
 
         else {
@@ -140,9 +140,15 @@ public class SplayTree <T extends Comparable<T>> {
 
             while (aux != null) {
 
+                if(value.compareTo(aux.value) == 0) {
+                    aux.count += 1;
+                    splay(aux);
+                    return;
+                }
+
                 if (value.compareTo(aux.value) < 0) {
                     if (aux.left == null) {
-                        aux.left = new Node(value);
+                        aux.left = new Node<T>(value);
                         aux.left.parent = aux;
                         splay (aux.left); // DIFERENCIAL DA SPLAYTREE
                         return;
@@ -152,7 +158,7 @@ public class SplayTree <T extends Comparable<T>> {
 
                 else {
                     if (aux.right == null) {
-                        aux.right = new Node(value);
+                        aux.right = new Node<T>(value);
                         aux.right.parent = aux;
                         splay(aux.right); // DIFERENCIAL DA SPLAYTREE
                         return;
@@ -193,7 +199,15 @@ public class SplayTree <T extends Comparable<T>> {
     public Node<T> remove (T value) {
 
         Node<T> nodeToRemov = search (value); // Buscca o nó e o coloca na raiz na Arvoré
-        if (nodeToRemov == null) return null;
+        if (nodeToRemov == null || nodeToRemov.value.compareTo(value) != 0) return null;
+        
+        // Em caso de duplicata, somente diminui a frequência, sem necessidade de remoção física. Nó removido já foi pra raiz no search.
+        if (nodeToRemov.count > 1) {
+            nodeToRemov.count--;
+            return nodeToRemov;
+
+
+        }
 
         Node<T> left = this.root.left; // SubArvore a esqueda da raiz
         Node<T> right = this.root.right; // SubArvore a direita da raiz
@@ -302,16 +316,18 @@ public class SplayTree <T extends Comparable<T>> {
 
     // Classe Node que representa os vértices (nós) da árvore.
     // É capaz de receber um tipo genérico, tornando a implementeção mais adaptável
-    private class Node {
+    private class Node <T> {
 
         T value;
 
-        Node left;
-        Node right;
-        Node parent;
+        Node<T> left;
+        Node<T> right;
+        Node<T> parent;
+        int count;
 
         Node(T value) {
             this.value = value;
+            this.count = 1;
         }
     }
 
