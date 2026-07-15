@@ -10,9 +10,10 @@
 public class SplayTree <T extends Comparable<T>> {
 
     private Node <T> root;
+    private int size;
 
     public SplayTree () {
-        this.root = null;
+        this.root = null; this.size = 0;
     }
 
     // REALIZAR ROTAÇÃO DE UM NÓ ATÉ A RAIZ, AJUSTANDO A ARVORE, AFIM DE TORNAR O NO A NOVA RAIZ
@@ -142,6 +143,7 @@ public class SplayTree <T extends Comparable<T>> {
 
                 if(value.compareTo(aux.value) == 0) {
                     aux.count += 1;
+                    size++;
                     splay(aux);
                     return;
                 }
@@ -150,6 +152,7 @@ public class SplayTree <T extends Comparable<T>> {
                     if (aux.left == null) {
                         aux.left = new Node<T>(value);
                         aux.left.parent = aux;
+                        size++;
                         splay (aux.left); // DIFERENCIAL DA SPLAYTREE
                         return;
                     }
@@ -160,6 +163,7 @@ public class SplayTree <T extends Comparable<T>> {
                     if (aux.right == null) {
                         aux.right = new Node<T>(value);
                         aux.right.parent = aux;
+                        size++;
                         splay(aux.right); // DIFERENCIAL DA SPLAYTREE
                         return;
                     }
@@ -204,9 +208,8 @@ public class SplayTree <T extends Comparable<T>> {
         // Em caso de duplicata, somente diminui a frequência, sem necessidade de remoção física. Nó removido já foi pra raiz no search.
         if (nodeToRemov.count > 1) {
             nodeToRemov.count--;
+            size --;
             return nodeToRemov;
-
-
         }
 
         Node<T> left = this.root.left; // SubArvore a esqueda da raiz
@@ -234,6 +237,7 @@ public class SplayTree <T extends Comparable<T>> {
                 right.parent = this.root;
             }
         }
+        size --;
         return nodeToRemov;
     }
 

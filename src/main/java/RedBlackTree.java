@@ -37,6 +37,7 @@ public class RedBlackTree<T extends Comparable<T>> {
 
             if (comp == 0) {
                 aux.count ++;
+                size++;
                 return;
             }
             else if (comp > 0) {
@@ -48,15 +49,63 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
 
         if (parent == NIL) this.root = newNode;
-        else if (v.compare(parent.v) < 0) parent.left = newNode;
+        else if (v.compareTo(parent.value) < 0) parent.left = newNode;
         else parent.right = newNode;
 
         newNode.parent = parent;
         newNode.left = newNode.right = NIL;
         size++;
 
-        // Método para ajustar a arvore
+        insertFixup(newNode);
     }
+
+    private void insertFixup(Node<T> node) {
+        while (node.parent.color == RED) {
+
+            // Se o pai for filho a esquerda do avô
+            if (node.parent == node.parent.parent.left) {
+                Node<T> uncleRight = node.parent.parent.right;
+
+                if (uncleRight.color == RED) {
+                    // Caso 1: tio vermelho -> recolorir e subir
+                    node.parent.color = BLACK;
+                    uncleRight.color = BLACK;
+                    node.parent.parent.color = RED;
+                    node = node.parent.parent;
+                } else {
+                    if (node == node.parent.right) {
+                        // Caso 2: triângulo -> rotação para virar linha
+                        node = node.parent;
+                        rotateLeft(node);
+                    }
+                    // Caso 3: linha -> rotação + recoloração
+                    node.parent.color = BLACK;
+                    node.parent.parent.color = RED;
+                    rotateRight(node.parent.parent);
+                }
+            } else {
+                Node<T> uncleLeft = node.parent.parent.left;
+
+                if (uncleLeft.color == RED) {
+                    node.parent.color = BLACK;
+                    uncleLeft.color = BLACK;
+                    node.parent.parent.color = RED;
+                    node = node.parent.parent;
+                } else {
+                    if (node == node.parent.left) {
+                        node = node.parent;
+                        rotateRight(node);
+                    }
+                    node.parent.color = BLACK;
+                    node.parent.parent.color = RED;
+                    rotateLeft(node.parent.parent);
+                }
+            }
+        }
+
+        this.root.color = BLACK;
+    }
+
 
     public Node<T> search(T v) {
         Node<T> aux = this.root;
@@ -70,7 +119,7 @@ public class RedBlackTree<T extends Comparable<T>> {
                 aux = aux.right;
             }
         }
-        return null;
+        return NIL;
     }
 
     public int height() {
@@ -83,16 +132,16 @@ public class RedBlackTree<T extends Comparable<T>> {
         return 1 + Math.max(height(n.left), height(n.right));
     }
 
-    public boolean equals(BasicBST<T> outra) {
+    public boolean equals(RedBlackTree<T> outra) {
         if (outra == null)
             return false;
         return equals(this.root, outra.root);
     }
 
     private boolean equals(Node<T> a, Node<T> b) {
-        if (a == null && b == null)
+        if (a == NIL && b == NIL)
             return true;
-        if (a == null || b == null || a.value.compareTo(b.value) != 0)
+        if (a == NIL || b == NIL || a.value.compareTo(b.value) != 0)
             return false;
         return equals(a.left, b.left) && equals(a.right, b.right);
     }
@@ -116,7 +165,8 @@ public class RedBlackTree<T extends Comparable<T>> {
         } else {
             Node<T> aux = node.parent;
 
-            while (aux != NIL && aux.value.compareTo(node.value) < 0) {
+            while (aux != NIL && node == aux.right) {
+                node = aux;
                 aux = aux.parent;
             }
 
@@ -126,68 +176,186 @@ public class RedBlackTree<T extends Comparable<T>> {
 
     public boolean remove(T value) {
         Node<T> toRemove = search(value);
-        if (toRemove != null) {
-            remove(toRemove);
+        if (toRemove != NIL) {
+            if (toRemove.count > 1) {
+                toRemove.count --;
+            }
+            else {
+                remove(toRemove);
+            }
             this.size--;
             return true;
         }
         return false;
     }
 
-    private void remove(Node<T> toRemove) {
-        // Nó folha:
-        if (toRemove.isLeaf()) {
-            if (toRemove == this.root) {
-                this.root = null;
-            } else {
-                if (toRemove == toRemove.parent.left) {
-                    toRemove.parent.left = null;
-                } else {
-                    toRemove.parent.right = null;
-                }
-            }
+    private void transplant(Node<T> a, Node<T> b) {
+        if (a.parent == NIL) {
+            this.root = b;
+        } else if (a == a.parent.left) {
+            a.parent.left = b;
+        } else {
+            a.parent.right = b;
         }
-        // Só filho a esquerda:
-        else if (toRemove.hasOnlyLeftChild()) {
-            if (toRemove == this.root) {
-                this.root = toRemove.left;
-                this.root.parent = null;
+        b.parent = a.parent;
+    }
+
+    private void remove(Node<T> node) {
+        Node<T> y = node;
+        boolean yOriginalColor = y.color;
+        Node<T> x;
+
+        if (node.left == NIL) {
+            x = node.right;
+            transplant(node, node.right);
+        } else if (node.right == NIL) {
+            x = node.left;
+            transplant(node, node.left);
+        } else {
+            y = min(node.right);
+            yOriginalColor = y.color;
+            x = y.right;
+
+            if (y.parent == node) {
+                x.parent = y;
             } else {
-                toRemove.left.parent = toRemove.parent;
-                if (toRemove == toRemove.parent.left) {
-                    toRemove.parent.left = toRemove.left;
-                } else {
-                    toRemove.parent.right = toRemove.left;
-                }
+                transplant(y, y.right);
+                y.right = node.right;
+                y.right.parent = y;
             }
+
+            transplant(node, y);
+            y.left = node.left;
+            y.left.parent = y;
+            y.color = node.color;
         }
-        // Só filho a direita:
-        else if (toRemove.hasOnlyRightChild()) {
-            if (toRemove == this.root) {
-                this.root = toRemove.right;
-                this.root.parent = null;
-            } else {
-                toRemove.right.parent = toRemove.parent;
-                if (toRemove == toRemove.parent.left) {
-                    toRemove.parent.left = toRemove.right;
-                } else {
-                    toRemove.parent.right = toRemove.right;
-                }
-            }
-        }
-        // 2 filhos:
-        else {
-            Node<T> sucessor = sucessor(toRemove);
-            toRemove.value = sucessor.value;
-            remove(sucessor);
+
+        if (yOriginalColor == BLACK) {
+            deleteFixup(x);
         }
     }
 
+    private void deleteFixup(Node<T> x) {
+        while (x != this.root && x.color == BLACK) {
+
+            if (x == x.parent.left) {
+                Node<T> sibling = x.parent.right;
+
+                if (sibling.color == RED) {
+                    // Caso 1: irmão vermelho -> vira caso 2/3/4 preto
+                    sibling.color = BLACK;
+                    x.parent.color = RED;
+                    rotateLeft(x.parent);
+                    sibling = x.parent.right;
+                }
+
+                if (sibling.left.color == BLACK && sibling.right.color == BLACK) {
+                    // Caso 2: ambos os filhos do irmão são pretos
+                    sibling.color = RED;
+                    x = x.parent;
+                } else {
+                    if (sibling.right.color == BLACK) {
+                        // Caso 3: filho próximo vermelho, distante preto
+                        sibling.left.color = BLACK;
+                        sibling.color = RED;
+                        rotateRight(sibling);
+                        sibling = x.parent.right;
+                    }
+                    // Caso 4: filho distante vermelho
+                    sibling.color = x.parent.color;
+                    x.parent.color = BLACK;
+                    sibling.right.color = BLACK;
+                    rotateLeft(x.parent);
+                    x = this.root;
+                }
+            } else {
+                Node<T> sibling = x.parent.left;
+
+                if (sibling.color == RED) {
+                    sibling.color = BLACK;
+                    x.parent.color = RED;
+                    rotateRight(x.parent);
+                    sibling = x.parent.left;
+                }
+
+                if (sibling.right.color == BLACK && sibling.left.color == BLACK) {
+                    sibling.color = RED;
+                    x = x.parent;
+                } else {
+                    if (sibling.left.color == BLACK) {
+                        sibling.right.color = BLACK;
+                        sibling.color = RED;
+                        rotateLeft(sibling);
+                        sibling = x.parent.left;
+                    }
+                    sibling.color = x.parent.color;
+                    x.parent.color = BLACK;
+                    sibling.left.color = BLACK;
+                    rotateRight(x.parent);
+                    x = this.root;
+                }
+            }
+        }
+
+        x.color = BLACK;
+    }
+
+    private void rotateLeft (Node<T> node) {
+
+        Node <T> newParent = node.right;
+        node.right = newParent.left;
+
+        if (newParent.left != NIL) {
+            newParent.left.parent = node;
+        }
+
+        newParent.parent = node.parent;
+
+        if (node.parent == NIL) {
+            this.root = newParent;
+        }
+        else if (node == node.parent.left) {
+            node.parent.left = newParent;
+        }
+        else if (node == node.parent.right) {
+            node.parent.right = newParent;
+        }
+
+        newParent.left = node;
+        node.parent = newParent;
+    }
+
+    private void rotateRight (Node<T> node) {
+
+        Node <T> newParent = node.left;
+        node.left = newParent.right;
+
+        if (newParent.right != NIL) {
+            newParent.right.parent = node;
+        }
+
+        newParent.parent = node.parent;
+
+        if (node.parent == NIL) {
+            this.root = newParent;
+        }
+        else if (node == node.parent.left) {
+            node.parent.left = newParent;
+        }
+        else if (node == node.parent.right) {
+            node.parent.right = newParent;
+        }
+
+        newParent.right = node;
+        node.parent = newParent;
+    }
+
+
     protected class Node<T> {
         T value;
+        Node<T> parent;
         Node<T> left;
         Node<T> right;
-        Node<T> parent;
         int count;
         boolean color;
 
@@ -198,15 +366,15 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
 
         public boolean isLeaf() {
-            return this.left == null && this.right == null;
+            return this.left == NIL && this.right == NIL;
         }
 
         public boolean hasOnlyLeftChild() {
-            return this.left != null && this.right == null;
+            return this.left != NIL && this.right == NIL;
         }
 
         public boolean hasOnlyRightChild() {
-            return this.left == null && this.right != null;
+            return this.left == NIL && this.right != NIL;
         }
     }
 }
