@@ -174,14 +174,14 @@ public class SplayTree <T extends Comparable<T>> {
         Node<T> last = null; // Último nó visitado
 
         while (aux != null) {
+            last = aux;
             if (value.compareTo(aux.value) == 0) {
                 splay (aux); // DIFERENCIAL DA SPLAYTREE
                 return aux;
             }
             if (value.compareTo(aux.value) < 0) aux = aux.left;
-            if (value.compareTo(aux.value) > 0) aux = aux.right;
+            else (value.compareTo(aux.value) > 0) aux = aux.right;
 
-            last = aux;
         }
 
         // Caso o nó não seja encontrado na árvore, é exutado o splay no último nó visitado
@@ -191,6 +191,11 @@ public class SplayTree <T extends Comparable<T>> {
         return null;
     }
 
+    public clear () {
+        this.root = null;
+        this.root.left = null;
+        this.root.right = null;
+    }
 
     public Node<T> remove (T value) {
 
