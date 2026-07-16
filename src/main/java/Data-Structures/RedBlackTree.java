@@ -189,115 +189,115 @@ public class RedBlackTree<T extends Comparable<T>> {
         return false;
     }
 
-    private void transplant(Node<T> a, Node<T> b) {
-        if (a.parent == NIL) {
-            this.root = b;
-        } else if (a == a.parent.left) {
-            a.parent.left = b;
+    private void transplant(Node<T> target, Node<T> substitute) {
+        if (target.parent == NIL) {
+            this.root = substitute;
+        } else if (target == target.parent.left) {
+            target.parent.left = substitute;
         } else {
-            a.parent.right = b;
+            target.parent.right = substitute;
         }
-        b.parent = a.parent;
+        substitute.parent = target.parent;
     }
 
-    private void remove(Node<T> node) {
-        Node<T> y = node;
-        boolean yOriginalColor = y.color;
-        Node<T> x;
+    private void remove(Node<T> toRemove) {
+        Node<T> removed = toRemove;
+        boolean removedOriginalColor = removed.color;
+        Node<T> moved;
 
-        if (node.left == NIL) {
-            x = node.right;
-            transplant(node, node.right);
-        } else if (node.right == NIL) {
-            x = node.left;
-            transplant(node, node.left);
+        if (toRemove.left == NIL) {
+            moved = toRemove.right;
+            transplant(toRemove, toRemove.right);
+        } else if (toRemove.right == NIL) {
+            moved = toRemove.left;
+            transplant(toRemove, toRemove.left);
         } else {
-            y = min(node.right);
-            yOriginalColor = y.color;
-            x = y.right;
+            removed = min(toRemove.right); // sucessor de toRemove
+            removedOriginalColor = removed.color;
+            moved = removed.right;
 
-            if (y.parent == node) {
-                x.parent = y;
+            if (removed.parent == toRemove) {
+                moved.parent = removed;
             } else {
-                transplant(y, y.right);
-                y.right = node.right;
-                y.right.parent = y;
+                transplant(removed, removed.right);
+                removed.right = toRemove.right;
+                removed.right.parent = removed;
             }
 
-            transplant(node, y);
-            y.left = node.left;
-            y.left.parent = y;
-            y.color = node.color;
+            transplant(toRemove, removed);
+            removed.left = toRemove.left;
+            removed.left.parent = removed;
+            removed.color = toRemove.color;
         }
 
-        if (yOriginalColor == BLACK) {
-            deleteFixup(x);
+        if (removedOriginalColor == BLACK) {
+            deleteFixup(moved);
         }
     }
 
-    private void deleteFixup(Node<T> x) {
-        while (x != this.root && x.color == BLACK) {
+    private void deleteFixup(Node<T> moved) {
+        while (moved != this.root && moved.color == BLACK) {
 
-            if (x == x.parent.left) {
-                Node<T> sibling = x.parent.right;
+            if (moved == moved.parent.left) {
+                Node<T> sibling = moved.parent.right;
 
                 if (sibling.color == RED) {
                     // Caso 1: irmão vermelho -> vira caso 2/3/4 preto
                     sibling.color = BLACK;
-                    x.parent.color = RED;
-                    rotateLeft(x.parent);
-                    sibling = x.parent.right;
+                    moved.parent.color = RED;
+                    rotateLeft(moved.parent);
+                    sibling = moved.parent.right;
                 }
 
                 if (sibling.left.color == BLACK && sibling.right.color == BLACK) {
                     // Caso 2: ambos os filhos do irmão são pretos
                     sibling.color = RED;
-                    x = x.parent;
+                    moved = moved.parent;
                 } else {
                     if (sibling.right.color == BLACK) {
                         // Caso 3: filho próximo vermelho, distante preto
                         sibling.left.color = BLACK;
                         sibling.color = RED;
                         rotateRight(sibling);
-                        sibling = x.parent.right;
+                        sibling = moved.parent.right;
                     }
                     // Caso 4: filho distante vermelho
-                    sibling.color = x.parent.color;
-                    x.parent.color = BLACK;
+                    sibling.color = moved.parent.color;
+                    moved.parent.color = BLACK;
                     sibling.right.color = BLACK;
-                    rotateLeft(x.parent);
-                    x = this.root;
+                    rotateLeft(moved.parent);
+                    moved = this.root;
                 }
             } else {
-                Node<T> sibling = x.parent.left;
+                Node<T> sibling = moved.parent.left;
 
                 if (sibling.color == RED) {
                     sibling.color = BLACK;
-                    x.parent.color = RED;
-                    rotateRight(x.parent);
-                    sibling = x.parent.left;
+                    moved.parent.color = RED;
+                    rotateRight(moved.parent);
+                    sibling = moved.parent.left;
                 }
 
                 if (sibling.right.color == BLACK && sibling.left.color == BLACK) {
                     sibling.color = RED;
-                    x = x.parent;
+                    moved = moved.parent;
                 } else {
                     if (sibling.left.color == BLACK) {
                         sibling.right.color = BLACK;
                         sibling.color = RED;
                         rotateLeft(sibling);
-                        sibling = x.parent.left;
+                        sibling = moved.parent.left;
                     }
-                    sibling.color = x.parent.color;
-                    x.parent.color = BLACK;
+                    sibling.color = moved.parent.color;
+                    moved.parent.color = BLACK;
                     sibling.left.color = BLACK;
-                    rotateRight(x.parent);
-                    x = this.root;
+                    rotateRight(moved.parent);
+                    moved = this.root;
                 }
             }
         }
 
-        x.color = BLACK;
+        moved.color = BLACK;
     }
 
     private void rotateLeft (Node<T> node) {

@@ -1,12 +1,4 @@
-// OBS: Atualmente a implementação não trata a questão dos objetos repetidos, não decidi exatamente como tratar então
-// optei por não mexer nesse detalhe. Isso pois, considerando que a arvoré pode ser utilizada para armazenar praticamente
-// qualquer tipo de objeto, acredito que o tratamento varia de caso para caso, então não mexi.
-// Ou seja, se a arvoré armazenar inteiros e forem adicionados dois 10, ficaria assim:
-// 10
-//   \
-//    10
-// Futuramente decidimos como faremos os ajustes finais, é apenas um esbouço da implementeção
-
+// Implementação de uma Splay Tree para comparação com outras arvores binárias de pesquisa
 public class SplayTree <T extends Comparable<T>> {
 
     private Node <T> root;
