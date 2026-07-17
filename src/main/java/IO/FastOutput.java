@@ -25,7 +25,7 @@ public class FastOutput {
     }
 
     public void flush() throws IOException {
-        writer.write(buffer.toString());
+        writer.write(sb.toString());
         writer.flush();
         sb.setLength(0);
     }

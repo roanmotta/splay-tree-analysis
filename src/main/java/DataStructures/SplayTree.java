@@ -1,4 +1,4 @@
-package datastructures;
+package DataStructures;
 // Implementação de uma Splay Tree para comparação com outras arvores binárias de pesquisa
 public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
@@ -336,19 +336,4 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
     // Classe Node que representa os vértices (nós) da árvore.
     // É capaz de receber um tipo genérico, tornando a implementeção mais adaptável
-    private class Node <T> {
-
-        T value;
-
-        Node<T> left;
-        Node<T> right;
-        Node<T> parent;
-        int count;
-
-        Node(T value) {
-            this.value = value;
-            this.count = 1;
-        }
-    }
-
 }

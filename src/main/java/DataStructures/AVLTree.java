@@ -1,4 +1,4 @@
-package datastructures;
+package DataStructures;
 // Implementação de uma AVL Tree para fins comparativos com a Splay Tree.
 public class AVLTree<T extends Comparable<T>> implements SearchTree <T>{
 
@@ -21,7 +21,7 @@ public class AVLTree<T extends Comparable<T>> implements SearchTree <T>{
 
 
     private int height(Node<T> node) {
-        if (node == null) return null;
+        if (node == null) return -1;
         else return node.height;
     }
 
@@ -287,33 +287,6 @@ public class AVLTree<T extends Comparable<T>> implements SearchTree <T>{
             Node<T> sucessor = sucessor(toRemove);
             toRemove.value = sucessor.value;
             remove(sucessor);
-        }
-    }
-
-    protected class Node<T> {
-        T value;
-        Node<T> left;
-        Node<T> right;
-        Node<T> parent;
-        int count;
-        int height;
-
-        Node(T v) {
-            this.value = v;
-            this.count = 1;
-            this.height = 0; // nó novo (folha) sempre nasce com altura 0
-        }
-
-        public boolean isLeaf() {
-            return this.left == null && this.right == null;
-        }
-
-        public boolean hasOnlyLeftChild() {
-            return this.left != null && this.right == null;
-        }
-
-        public boolean hasOnlyRightChild() {
-            return this.left == null && this.right != null;
         }
     }
 }

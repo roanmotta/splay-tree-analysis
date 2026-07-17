@@ -1,4 +1,4 @@
-package datastructures;
+package DataStructures;
 // Implementação de uma árvore vermelha e preta para fins comparativos com a Splay Tree.
 public class RedBlackTree<T extends Comparable<T>> implements SearchTree<T> {
 
@@ -353,33 +353,5 @@ public class RedBlackTree<T extends Comparable<T>> implements SearchTree<T> {
 
         newParent.right = node;
         node.parent = newParent;
-    }
-
-
-    protected class Node<T> {
-        T value;
-        Node<T> parent;
-        Node<T> left;
-        Node<T> right;
-        int count;
-        boolean color;
-
-        Node(T v) {
-            this.value = v;
-            this.count = 1;
-            this.color = RED;
-        }
-
-        public boolean isLeaf() {
-            return this.left == NIL && this.right == NIL;
-        }
-
-        public boolean hasOnlyLeftChild() {
-            return this.left != NIL && this.right == NIL;
-        }
-
-        public boolean hasOnlyRightChild() {
-            return this.left == NIL && this.right != NIL;
-        }
     }
 }
