@@ -1,3 +1,4 @@
+package datastructures;
 // Implementação de uma Splay Tree para comparação com outras arvores binárias de pesquisa
 public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
@@ -209,7 +210,7 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
         return null;
     }
 
-    public clear () {
+    public void clear () {
         this.root = null;
         this.root.left = null;
         this.root.right = null;
