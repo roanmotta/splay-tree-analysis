@@ -1,4 +1,4 @@
-package datastructures;
+package DataStructures;
 // Implementação de uma BST básica sem balanceamento para fins comparativos com a Splay Tree.
 public class BasicBST<T extends Comparable<T>> implements SearchTree<T> {
 
@@ -181,31 +181,6 @@ private Node<T> min(Node<T> node) {
             Node<T> sucessor = sucessor(toRemove);
             toRemove.value = sucessor.value;
             remove(sucessor);
-        }
-    }
-
-    protected class Node<T> {
-        T value;
-        Node<T> left;
-        Node<T> right;
-        Node<T> parent;
-        int count;
-
-        Node(T v) {
-            this.value = v;
-            this.count = 1;
-        }
-
-        public boolean isLeaf() {
-            return this.left == null && this.right == null;
-        }
-
-        public boolean hasOnlyLeftChild() {
-            return this.left != null && this.right == null;
-        }
-
-        public boolean hasOnlyRightChild() {
-            return this.left == null && this.right != null;
         }
     }
 }

@@ -43,6 +43,6 @@ public class FastInput {
     }
 
     public void close() throws IOException {
-        leitor.close();
+        br.close();
     }
 }

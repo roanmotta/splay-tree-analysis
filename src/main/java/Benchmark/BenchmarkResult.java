@@ -1,4 +1,4 @@
-package benchmark;
+package Benchmark;
 
 public record BenchmarkResult(
         String structure,

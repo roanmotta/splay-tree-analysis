@@ -2,21 +2,26 @@ import java.util.*;
 import java.io.*;
 import java.util.function.Supplier;
 
-import benchmark.Benchmark;
-import io.DataLoader;
-import Data-Structures.SearchTree;
-import Data-Structures.AVL;
-import Data-Structures.BasicBST;
-import Data-Structures.RedBlackTree;
-import Data-Structures.SplayTree;
+import Benchmark.Benchmark;
+import IO.DataLoader;
+import DataStructures.SearchTree;
+import DataStructures.AVLTree;
+import DataStructures.BasicBST;
+import DataStructures.RedBlackTree;
+import DataStructures.SplayTree;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        File pasta = new File("src/DataSets");
+        if (!pasta.exists()) {
+            pasta.mkdirs();
+        }
+
         Benchmark bench = new Benchmark();
 
-        for (int k = 10; k <= 1_000_000; k *= 10) {
+        for (int k = 10; k <= 100; k *= 10) {
 
             DataLoader.generateRandomNumbers("src/DataSets/random.txt", k);
             DataLoader.generateOrderedNumbers("src/DataSets/sorted.txt", k);
@@ -28,7 +33,7 @@ public class Main {
                 int[] data = DataLoader.toLoad("src/DataSets/" + nomeDataSet + ".txt"); // faltava o []
                 int n = data.length;
 
-                testStructure(bench, AVL::new, "AVLTree", nomeDataSet, data, n);
+                testStructure(bench, AVLTree::new, "AVLTree", nomeDataSet, data, n);
                 testStructure(bench, RedBlackTree::new, "RedBlackTree", nomeDataSet, data, n);
                 testStructure(bench, SplayTree::new, "SplayTree", nomeDataSet, data, n);
 

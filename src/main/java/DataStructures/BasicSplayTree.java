@@ -1,4 +1,4 @@
-package datastructures;
+package DataStructures;
 // Classe utilizada apenas para a produção do material didático.
 
 public class BasicSplayTree {
