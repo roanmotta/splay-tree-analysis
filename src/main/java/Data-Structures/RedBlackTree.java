@@ -1,5 +1,5 @@
 // Implementação de uma árvore vermelha e preta para fins comparativos com a Splay Tree.
-public class RedBlackTree<T extends Comparable<T>> {
+public class RedBlackTree<T extends Comparable<T>> implements SearchTree<T> {
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
