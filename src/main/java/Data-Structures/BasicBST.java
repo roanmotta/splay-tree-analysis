@@ -1,5 +1,5 @@
 // Implementação de uma BST básica sem balanceamento para fins comparativos com a Splay Tree.
-public class BasicBST<T extends Comparable<T>> {
+public class BasicBST<T extends Comparable<T>> implements SearchTree<T> {
 
     private Node<T> root;
     private int size;
