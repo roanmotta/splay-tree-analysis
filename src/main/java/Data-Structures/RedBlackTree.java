@@ -1,3 +1,4 @@
+package datastructures;
 // Implementação de uma árvore vermelha e preta para fins comparativos com a Splay Tree.
 public class RedBlackTree<T extends Comparable<T>> implements SearchTree<T> {
 
