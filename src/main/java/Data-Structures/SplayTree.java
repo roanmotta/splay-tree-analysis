@@ -198,7 +198,7 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
                 return aux;
             }
             if (value.compareTo(aux.value) < 0) aux = aux.left;
-            else (value.compareTo(aux.value) > 0) aux = aux.right;
+            else if (value.compareTo(aux.value) > 0) aux = aux.right;
 
         }
 
