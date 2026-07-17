@@ -1,3 +1,4 @@
+package datastructures;
 // Implementação de uma BST básica sem balanceamento para fins comparativos com a Splay Tree.
 public class BasicBST<T extends Comparable<T>> implements SearchTree<T> {
 
