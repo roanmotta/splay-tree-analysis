@@ -91,7 +91,7 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
     @Override
     public int size() {
-        return this.size();
+        return this.size;
     }
 
     private int height(Node<T> n) {
@@ -144,6 +144,7 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
         if (isEmpty()) {
             this.root = new Node<T>(value);
+            this.size++;
         }
 
         else {
@@ -212,8 +213,7 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
     public void clear () {
         this.root = null;
-        this.root.left = null;
-        this.root.right = null;
+        this.size = 0;
     }
 
     public Node<T> remove (T value) {
