@@ -1,5 +1,5 @@
 // Implementação de uma AVL Tree para fins comparativos com a Splay Tree.
-public class AVLTree<T extends Comparable<T>> {
+public class AVLTree<T extends Comparable<T>> implements SearchTree <T>{
 
     private Node<T> root;
     private int size;
@@ -13,9 +13,11 @@ public class AVLTree<T extends Comparable<T>> {
         return this.root == null;
     }
 
+    @Override
     public int size() {
         return this.size;
     }
+
 
     private int height(Node<T> node) {
         if (node == null) return null;
@@ -118,6 +120,7 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public void add(T v) {
         if (isEmpty()) {
             this.root = new Node<>(v);
@@ -157,6 +160,7 @@ public class AVLTree<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public Node<T> search(T v) {
         Node<T> aux = this.root;
         while (aux != null) {
@@ -172,6 +176,7 @@ public class AVLTree<T extends Comparable<T>> {
         return null;
     }
 
+    @Override
     public int height() {
         return height(this.root);
     }

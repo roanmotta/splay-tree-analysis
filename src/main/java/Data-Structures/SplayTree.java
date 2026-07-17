@@ -88,6 +88,22 @@ public class SplayTree <T extends Comparable<T>> {
         return this.root == null;
     }
 
+    @Override
+    public int size() {
+        return this.size();
+    }
+
+    private int height(Node<T> n) {
+        if (n == null)
+            return -1;
+        return 1 + Math.max(height(n.left), height(n.right));
+    }
+
+    @Override
+    public int height() {
+        return height(this.root);
+    }
+
     public Node<T> maxSubTree (Node<T> node) {
         Node<T> aux = node;
 
@@ -122,6 +138,7 @@ public class SplayTree <T extends Comparable<T>> {
         return null;
     }
 
+    @Override
     public void add (T value) {
 
         if (isEmpty()) {
@@ -165,6 +182,7 @@ public class SplayTree <T extends Comparable<T>> {
         }
     }
 
+    @Override
     public Node<T> search (T value) {
         if (isEmpty()) {
             return null;

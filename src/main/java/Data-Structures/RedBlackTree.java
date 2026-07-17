@@ -20,10 +20,12 @@ public class RedBlackTree<T extends Comparable<T>> {
         return this.root == NIL;
     }
 
+    @Override
     public int size() {
         return this.size;
     }
 
+    @Override
     public void add(T v) {
 
         Node<T> newNode = new Node<>(v);
@@ -107,6 +109,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
 
+    @Override
     public Node<T> search(T v) {
         Node<T> aux = this.root;
         while (aux != NIL) {
@@ -122,6 +125,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         return NIL;
     }
 
+    @Override
     public int height() {
         return height(this.root);
     }

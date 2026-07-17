@@ -13,10 +13,12 @@ public class BasicBST<T extends Comparable<T>> {
         return this.root == null;
     }
 
+    @Override
     public int size() {
         return this.size;
     }
 
+    @Override
     public void add(T v) {
         if (isEmpty()) {
             this.root = new Node<>(v);
@@ -54,6 +56,7 @@ public class BasicBST<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public Node<T> search(T v) {
         Node<T> aux = this.root;
         while (aux != null) {
@@ -69,6 +72,7 @@ public class BasicBST<T extends Comparable<T>> {
         return null;
     }
 
+    @Override
     public int height() {
         return height(this.root);
     }
