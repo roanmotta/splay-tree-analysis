@@ -1,5 +1,5 @@
 // Implementação de uma Splay Tree para comparação com outras arvores binárias de pesquisa
-public class SplayTree <T extends Comparable<T>> {
+public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
     private Node <T> root;
     private int size;
