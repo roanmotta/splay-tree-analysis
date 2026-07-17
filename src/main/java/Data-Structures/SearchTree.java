@@ -5,7 +5,7 @@ package datastructures;
 
 public interface SearchTree<T extends Comparable<T>> {
     void add (T valor);
-    boolean search(T valor);
+    Node<T> search(T valor);
     int height();
     int size();
 }
