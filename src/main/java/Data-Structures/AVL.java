@@ -1,3 +1,4 @@
+package datastructures;
 // Implementação de uma AVL Tree para fins comparativos com a Splay Tree.
 public class AVLTree<T extends Comparable<T>> implements SearchTree <T>{
 
