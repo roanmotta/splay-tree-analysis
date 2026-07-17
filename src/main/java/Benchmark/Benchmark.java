@@ -7,10 +7,10 @@ public class Benchmark {
     private final Timer timer = new Timer();
     private final List<BenchmarkResult> results = new ArrayList<>();
 
-    // descart: numero de execucoes "de graca" antes de medir,
+    // warmup: numero de execucoes "de graca" antes de medir,
     // para dar tempo do JIT compilar o codigo quente (evita medir bytecode interpretado)
-    public double medir(Runnable operation, int rep, int descart) {
-        for (int i = 0; i < descart; i++) operation.run();
+    public double measure(Runnable operation, int rep, int warmup) {
+        for (int i = 0; i < warmup; i++) operation.run();
 
         timer.reset();
         for (int i = 0; i < rep; i++) {
@@ -21,9 +21,9 @@ public class Benchmark {
         return timer.getTotal() / rep;
     }
 
-    public void registrar(String structure, String operation, String dataset, int len,
-                          Runnable action, int rep, int descart) {
-        double averageTime = medir(action, rep, descart);
+    public void register(String structure, String operation, String dataset, int len,
+                         Runnable action, int rep, int warmup) {
+        double averageTime = measure(action, rep, warmup);
         results.add(new BenchmarkResult(structure, operation, dataset, len, averageTime));
         System.out.printf("%s [%s, %s, n=%d]: %.4f ms%n", structure, operation, dataset, len, averageTime);
     }

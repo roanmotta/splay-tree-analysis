@@ -1,13 +1,13 @@
 package benchmark;
 
 public record BenchmarkResult(
-        String estrutura,
-        String operacao,
+        String structure,
+        String operation,
         String dataset,
-        int tamanhoEntrada,
-        double tempoMedioMs
+        int len,
+        double averageTime
 ) {
     public String toCsvLine() {
-        return estrutura + "," + operacao + "," + dataset + "," + tamanhoEntrada + "," + tempoMedioMs;
+        return structure + "," + operation + "," + dataset + "," + len + "," + averageTime;
     }
 }
