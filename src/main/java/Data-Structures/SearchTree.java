@@ -1,4 +1,4 @@
-package structures;
+package datastructures;
 
 // Interface comum a todas as arvores (BST, AVL, RedBlack, Splay).
 // Permite que o Benchmark trate qualquer estrutura de forma uniforme.
