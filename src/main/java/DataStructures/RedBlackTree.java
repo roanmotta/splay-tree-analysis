@@ -30,6 +30,7 @@ public class RedBlackTree<T extends Comparable<T>> implements SearchTree<T> {
     public void add(T v) {
 
         Node<T> newNode = new Node<>(v);
+        newNode.color = RED;
         Node<T> parent = this.NIL;
         Node<T> aux = this.root;
 

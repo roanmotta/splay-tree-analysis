@@ -21,7 +21,7 @@ public class Main {
 
         Benchmark bench = new Benchmark();
 
-        for (int k = 10; k <= 100; k *= 10) {
+        for (int k = 10; k <= 10000; k *= 10) {
 
             DataLoader.generateRandomNumbers("src/DataSets/random.txt", k);
             DataLoader.generateOrderedNumbers("src/DataSets/sorted.txt", k);

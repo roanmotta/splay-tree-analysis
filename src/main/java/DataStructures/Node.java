@@ -6,8 +6,8 @@ public class Node<T> {
     public Node<T> right;
     public Node<T> parent;
     public int count;
-    public int height; // Usado pela AVL
-    public boolean color; // Pode ser usado pela RedBlack se precisar
+    public int height; // AVL
+    public boolean color; // RedBlack se precisar
 
     public Node(T v) {
         this.value = v;
