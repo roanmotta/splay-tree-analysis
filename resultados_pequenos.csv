@@ -1,0 +1,19 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: datasetName","Param: n","Param: structureName"
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"0,690736","0,097616","ms/op",random,100,AVLTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"0,811274","0,006562","ms/op",random,100,RedBlackTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"2,674207","0,035182","ms/op",random,100,SplayTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"1,184915","0,055143","ms/op",random,1000,AVLTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"1,331491","0,019613","ms/op",random,1000,RedBlackTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"2,392802","0,022090","ms/op",random,1000,SplayTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"0,721745","0,001534","ms/op",sorted,100,AVLTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"0,665595","0,002650","ms/op",sorted,100,RedBlackTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"2,204404","0,008553","ms/op",sorted,100,SplayTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"1,114798","0,006129","ms/op",sorted,1000,AVLTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"1,369449","0,004473","ms/op",sorted,1000,RedBlackTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"2,729251","0,024043","ms/op",sorted,1000,SplayTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"0,745510","0,024566","ms/op",reverse,100,AVLTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"0,660805","0,065172","ms/op",reverse,100,RedBlackTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"2,287339","0,056023","ms/op",reverse,100,SplayTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"1,144726","0,010985","ms/op",reverse,1000,AVLTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"1,362413","0,068833","ms/op",reverse,1000,RedBlackTree
+"Bench.HotSearchBenchmark.searchHot","avgt",1,10,"2,777996","0,080404","ms/op",reverse,1000,SplayTree

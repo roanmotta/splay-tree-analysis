@@ -21,7 +21,7 @@ public class Main {
 
         Benchmark bench = new Benchmark();
 
-        for (int k = 10; k <= 10000; k *= 10) {
+        for (int k = 100; k <= 10000000; k *= 10) {
 
             DataLoader.generateRandomNumbers("src/DataSets/random.txt", k);
             DataLoader.generateOrderedNumbers("src/DataSets/sorted.txt", k);
@@ -33,16 +33,20 @@ public class Main {
                 int[] data = DataLoader.toLoad("src/DataSets/" + nomeDataSet + ".txt"); // faltava o []
                 int n = data.length;
 
-                testStructure(bench, AVLTree::new, "AVLTree", nomeDataSet, data, n);
-                testStructure(bench, RedBlackTree::new, "RedBlackTree", nomeDataSet, data, n);
-                testStructure(bench, SplayTree::new, "SplayTree", nomeDataSet, data, n);
+                // testStructure(bench, AVLTree::new, "AVLTree", nomeDataSet, data, n);
+                // testStructure(bench, RedBlackTree::new, "RedBlackTree", nomeDataSet, data, n);
+                // testStructure(bench, SplayTree::new, "SplayTree", nomeDataSet, data, n);
 
                 // Na BST básica, quando os elementos são inseridos de forma ordenada ou reversa, a arvoré se torna
                 // uma espécie de array linear. Dessa forma, as operações de busca e inserção se tornam O(n).
                 // Como esssas operações são executadas n vezes, isso se torna um O(n²).
                 // Assim, na hora de testar esse tipo, talvez seja necessário reduzir o tamanho da entrada
                 // 10000 operações ou algo próximo disso deve funcionar, números maiores já causariam problemas.
-                testStructure(bench, BasicBST::new, "BasicBST", nomeDataSet, data, n);
+                //testStructure(bench, BasicBST::new, "BasicBST", nomeDataSet, data, n);
+
+                testHotSearch(bench, AVLTree::new, "AVLTree", nomeDataSet, data, n);
+                testHotSearch(bench, RedBlackTree::new, "RedBlackTree", nomeDataSet, data, n);
+                testHotSearch(bench, SplayTree::new, "SplayTree", nomeDataSet, data, n);
             }
         }
 
@@ -68,5 +72,35 @@ public class Main {
         bench.register(name, "search", dataset, n, () -> {
             for (int v : data) treeForSearch.search(v);
         }, 20, 5);
+    }
+
+    private static void testHotSearch(Benchmark bench,
+                                      Supplier<SearchTree<Integer>> factory,
+                                      String name,
+                                      String dataset,
+                                      int[] data,
+                                      int n) {
+
+        // Constrói a árvore uma única vez
+        SearchTree<Integer> tree = factory.get();
+        for (int v : data) {
+            tree.add(v);
+        }
+
+        // Seleciona apenas 10 elementos "quentes"
+        Random random = new Random(42);
+        int[] hotKeys = new int[10];
+
+        for (int i = 0; i < hotKeys.length; i++) {
+            hotKeys[i] = data[random.nextInt(n)];
+        }
+
+        bench.register(name, "search-hot", dataset, n, () -> {
+            // Realiza muitas buscas apenas nesses 10 elementos
+            for (int i = 0; i < 100000; i++) {
+                tree.search(hotKeys[i % hotKeys.length]);
+            }
+
+        }, 50, 10);
     }
 }
