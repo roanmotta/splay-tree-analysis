@@ -1,4 +1,4 @@
-package Benchmark;
+package Bench;
 
 public class TimerBench {
     private long startTime;

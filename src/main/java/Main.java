@@ -2,11 +2,10 @@ import java.util.*;
 import java.io.*;
 import java.util.function.Supplier;
 
-import Benchmark.Benchmark;
+import Bench.Benchmark;
 import IO.DataLoader;
 import DataStructures.SearchTree;
 import DataStructures.AVLTree;
-import DataStructures.BasicBST;
 import DataStructures.RedBlackTree;
 import DataStructures.SplayTree;
 

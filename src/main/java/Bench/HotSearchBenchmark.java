@@ -1,10 +1,10 @@
-package Benchmark;
+package Bench;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
 
 import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 
 import DataStructures.SearchTree;
@@ -19,6 +19,7 @@ import IO.DataLoader;
 @Fork(value = 2, warmups = 1)
 @Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
+
 public class HotSearchBenchmark {
 
     @Param({"100", "1000", "10000", "100000", "1000000"})
@@ -45,7 +46,7 @@ public class HotSearchBenchmark {
 
         int[] data = DataLoader.toLoad(path);
 
-        tree = criarEstrutura(structureName);
+        tree = createStructure(structureName);
         for (int v : data) {
             tree.add(v);
         }
@@ -57,12 +58,12 @@ public class HotSearchBenchmark {
         }
     }
 
-    private SearchTree<Integer> criarEstrutura(String name) {
+    private SearchTree<Integer> createStructure (String name) {
         return switch (name) {
             case "AVLTree" -> new AVLTree<>();
             case "RedBlackTree" -> new RedBlackTree<>();
             case "SplayTree" -> new SplayTree<>();
-            default -> throw new IllegalArgumentException("Estrutura desconhecida: " + name);
+            default -> throw new IllegalArgumentException("Unidentified structure: " + name);
         };
     }
 

@@ -1,4 +1,4 @@
-package Benchmark;
+package Bench;
 
 import java.io.*;
 import java.util.*;
