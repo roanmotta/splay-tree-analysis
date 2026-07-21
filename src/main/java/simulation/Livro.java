@@ -2,7 +2,7 @@ package simulation;
 
 import java.util.Objects;
 
-public class Livro{
+public class Livro implements Comparable<Livro> {
     private String title;
     private String autor;
     private String isbn;
@@ -17,8 +17,12 @@ public class Livro{
         this.yearPublication = yearPublication;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public String getTitle() {
+        return this.title;
+    }
+
+    public int compareTo(Livro other) {
+        return this.title.compareTo(other.isbn);
     }
 
     @Override

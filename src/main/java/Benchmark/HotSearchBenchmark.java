@@ -1,4 +1,4 @@
-package Bench;
+package Benchmark;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
