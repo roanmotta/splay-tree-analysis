@@ -19,7 +19,7 @@ Para esses cenários, a **Splay Tree** é uma alternativa dinâmica e eficiente.
 
 # O Problema
 
-Imagine um banco de dados onde $80\%$ das requisições de busca concentram-se em apenas $20\%$ dos elementos. Em uma árvore estritamente balanceada como a AVL, a busca por esses elementos frequentes sempre vai custar $O(\log n)$. 
+Imagine um banco de dados onde $99\%$ das requisições de busca concentram-se em apenas $1\%$ dos elementos. Em uma árvore estritamente balanceada como a AVL, a busca por esses elementos frequentes sempre vai custar $O(\log n)$. 
 
 Pior ainda: se a árvore for uma BST comum e esses elementos populares estiverem localizados nas folhas mais profundas, as buscas repetidas custarão um tempo próximo de $O(n)$, degradando o desempenho do sistema.
 
@@ -228,7 +228,7 @@ A busca localiza o elemento comparando os valores de forma recursiva ou iterativ
     }
 ```
 ## Remoção
-A lógica de remoção física na Splay Tree é a seguinte:
+A lógica de remoção na Splay Tree é a seguinte:
 
 * Primeiramente, executamos a função search(value) para localizar o elemento. Caso ele exista, a busca faz o nó subir até a raiz através do splay.
 
@@ -282,6 +282,15 @@ A lógica de remoção física na Splay Tree é a seguinte:
         return nodeToRemove;
     }
 ```
+<br>
+
+
+# Experimentos
+
+Mas como a Splay Tree funciona, na prática? Para tanto, aqui estão alguns experimentos com casos de busca em Splay Trees organizadas em diferentes maneiras (Ordenadas, inversamente ordenadas, elementos em sequências aleatórias)
+
+Caso queria ver mais, [aqui](https://github.com/roanmotta/splay-tree-analysis) está disponível um repositório de experimentos mais detalhados.
+
 # Contribuições
 
 [Roan Motta](https://github.com/roanmotta) contribuiu para a escrita deste post.
