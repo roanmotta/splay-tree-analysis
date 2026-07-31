@@ -24,7 +24,7 @@ Nesse sentido, a execução dos experimentos se baseou em 3 etapas: <br>
 * Implementação das estruturas que serão comparadas. <br>
 * Geração das cargas de testes. <br>
 * Análise de desempenho das estruturas quando as cargas são aplicadas.
-<br>
+
 #### 1. Implementação das estruturas de dados: <br>
 Para possibilitar uma comparação da Splay Tree com outras árvores de pesquisa, foram implementadas as seguintes estruturas: AVL Tree, Red-Black Tree, BST (Binary Search Tree) básica; Splay Tree. <br>
 Todas as estruturas implementam a mesma interface de operações, permitindo que sejam submetidas aos mesmos experimentos e condições de teste.
