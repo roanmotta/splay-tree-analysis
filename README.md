@@ -30,7 +30,7 @@ Para possibilitar uma comparação da Splay Tree com outras árvores de pesquisa
 Todas as estruturas implementam a mesma interface de operações, permitindo que sejam submetidas aos mesmos experimentos e condições de teste.
 
 #### 2. Geração das cargas de testes: <br>
-As cargas de testes utilizadassão geradas automaticamente e adicionadas no diretório DataSets. Foram considerados tamanhos de entrada variando de 10² até 10⁶ elementos.
+As cargas de testes utilizadas são geradas automaticamente e adicionadas no diretório DataSets. Foram considerados tamanhos de entrada variando de 10² até 10⁶ elementos.
 
 Além disso, foram gerados conjuntos de dados contendo:
 
