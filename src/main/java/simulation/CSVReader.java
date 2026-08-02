@@ -13,6 +13,9 @@ public class CSVReader{
     private static final int COLUNA_PAGES = 3;
     private static final int COLUNA_YEAR = 4;
    
+    /**
+     * Lê o arquivo CSV livros e retorna a lista de livros processados.
+     */
     public List<Livro> readCSV(String filePath) {
         List<Livro> livros = new ArrayList<>();
 
@@ -30,16 +33,17 @@ public class CSVReader{
         return livros;
     }
 
+    /**
+     * Converte um array de campos no objeto Livro.
+     */
     private Livro processCSV(String[] field) {
-        // Implementation for processing the CSV file
+        
         String title = field[COLUNA_TITLE].trim();
         String autor = field[COLUNA_AUTOR].trim();
         String isbn = field[COLUNA_ISBN].trim();
         String pages = field[COLUNA_PAGES].trim();
         int year = Integer.parseInt(field[COLUNA_YEAR].trim());
-
-
-        // Do something with the extracted data, e.g., create a Livro object
+        
         Livro livro = new Livro(title, autor, isbn, pages, year);
         return livro;
     }
