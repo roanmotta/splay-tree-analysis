@@ -3,6 +3,13 @@ package IO;
 import java.util.*;
 import java.io.*;
 
+/**
+ Classe auxiliar para os experimentos, responsável por realizar a geração dos dados
+ que serão utilizados nos testes. De forma geral, são geradas bases numéricas com
+ três características diferentes, sendo elas: ordenadas, em ordem reversa e com números
+ aleatórios/pseudoaleatórios. Assim, é possível ter diferentes abordagens nos testes.
+ */
+
 public class DataLoader  {
 
     public static int[] toLoad (String path) throws IOException {
@@ -14,12 +21,12 @@ public class DataLoader  {
     }
 
     public static void generateRandomNumbers (String path, int len) throws IOException {
-        FastOutput FO = new FastOutput (path);
-        Random generator = new Random ();
+        FastOutput FO = new FastOutput(path);
+        Random generator = new Random();
         FO.println(String.valueOf(len));
 
-        for (int i = 0; i<len; i++) {
-            int n = generator.nextInt(len*10);
+        for (int i = 0; i < len; i++) {
+            int n = generator.nextInt(len * 10);
             FO.print(n + " ");
         }
         FO.close();

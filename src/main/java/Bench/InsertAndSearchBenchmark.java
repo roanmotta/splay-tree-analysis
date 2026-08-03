@@ -18,6 +18,14 @@ import IO.DataLoader;
 @Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
 
+/**
+ Classe responsável por realizar os testes de benchmark dos métodos de busca e inserção.
+ Esses testes são referentes às implementações padrão dos respectivos métodos. Assim, a inserção
+ se resume a adicionar um novo elemento na árvore de busca binária, enquanto a busca é sua execução
+ padrão, buscando um elemento na árvore. Diferentemente do SearchHot, essa busca não apresenta nenhuma variação
+ para buscar um grupo menor de elementos.
+ */
+
 public class InsertAndSearchBenchmark {
 
     @Param({"100", "1000", "10000", "100000", "1000000"})

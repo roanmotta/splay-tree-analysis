@@ -20,6 +20,15 @@ import IO.DataLoader;
 @Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
 
+/**
+ Classe responsável por realizar os testes de benchmark do método de busca "hot".
+ A "busca hot" consiste em executar o método de busca de um elemento em uma BST tendo
+ como base de busca um número reduzido de elementos, especificamente 10.
+ Dessa forma, executa-se o método de busca de cada um desses 10 elementos uma série
+ de vezes, a fim de construir uma métrica de eficiência em relação ao tempo de execução
+ de cada estrutura de dados para esse método.
+ */
+
 public class HotSearchBenchmark {
 
     @Param({"100", "1000", "10000", "100000", "1000000"})
