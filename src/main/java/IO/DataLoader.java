@@ -4,10 +4,10 @@ import java.util.*;
 import java.io.*;
 
 /**
- Classe auxiliar para os experimentos, responsável por realizar a geração dos dados
- que serão utilizados nos testes. De forma geral, são geradas bases numéricas com
- três características diferentes, sendo elas: ordenadas, em ordem reversa e com números
- aleatórios/pseudoaleatórios. Assim, é possível ter diferentes abordagens nos testes.
+ * Classe auxiliar para os experimentos, responsável por realizar a geração dos dados
+ * que serão utilizados nos testes. De forma geral, são geradas bases numéricas com
+ * três características diferentes, sendo elas: ordenadas, em ordem reversa e com números
+ * aleatórios/pseudoaleatórios. Assim, é possível ter diferentes abordagens nos testes.
  */
 
 public class DataLoader  {

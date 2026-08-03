@@ -2,8 +2,12 @@ package IO;
 
 import java.io.*;
 
-// Acumula em StringBuilder e so escreve no disco no flush/close.
-// Evita chamadas repetidas de I/O do sistema, que sao caras.
+/**
+ * Classe responsável pela saída de dados, otimizando a geração dos dados utilizados nos testes.
+ * É importante destacar que essa etapa de gerar os dados utilizados não é contabilizada no cálculo
+ * das métricas de teste das estruturas, sendo uma etapa separada.
+ */
+
 public class FastOutput {
     private final BufferedWriter writer;
     private final StringBuilder sb = new StringBuilder();

@@ -3,6 +3,12 @@ package IO;
 import java.io.*;
 import java.util.StringTokenizer;
 
+/**
+ * Classe responsável pela entrada de dados, otimizando a geração dos dados utilizados nos testes.
+ * É importante destacar que essa etapa de gerar os dados utilizados não é contabilizada no cálculo
+ * das métricas de teste das estruturas, sendo uma etapa separada.
+ */
+
 public class FastInput {
     private final BufferedReader br;
     private StringTokenizer st;

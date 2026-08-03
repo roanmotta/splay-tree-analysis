@@ -59,7 +59,7 @@ Esse comportamento é esperado, pois cada operação de busca na Splay Tree real
 
 Por outro lado, a BST básica apresentou desempenho inferior às demais estruturas, principalmente para os conjuntos ordenados, devido à ausência de mecanismos de balanceamento. Apenas no conjunto random seu desempenho permaneceu relativamente próximo ao das árvores balanceadas.
 
-![Gráfico de Busca Convencional](images/buscaconvencional.jpeg)
+![Gráfico de Busca Convencional](gráficos/buscaconvencional.jpeg)
 
 ### 2\. Inserção
 
@@ -69,11 +69,11 @@ Nos testes, a AVL Tree e a Red-Black Tree mantiveram tempos de execução bastan
 
 A Splay Tree apresentou maior custo para o conjunto aleatório, consequência do procedimento de autoajuste executado após cada inserção, que, nesse caso, não gera vantagens. Por outro lado, para os conjuntos ordenados, ela obteve desempenho significativamente superior ao das demais estruturas.
 
-![Gráfico de Inserção Reversa](images/reverseinsert.jpeg) ![Gráfico de Inserção Aleatória](images/randominsert.jpeg)
+![Gráfico de Inserção Reversa](gráficos/reverseinsert.jpeg) ![Gráfico de Inserção Aleatória](gráficos/randominsert.jpeg)
 
 Esse comportamento da Splay Tree pode ser explicado pelo fato de que, nesse padrão de entrada, o elemento recém-inserido é adicionado como raiz, caso a árvore esteja vazia, ou como filho da raiz (à esquerda, para o conjunto em ordem decrescente, e à direita, para o conjunto em ordem crescente), fazendo com que seja necessária apenas uma ou nenhuma rotação para promovê-lo até a raiz. Dessa forma, o custo de cada inserção, nos cenários com elementos ordenados em ordem crescente ou decrescente, aproxima-se de um custo constante, o que explica o melhor desempenho observado pelos testes.
 
-![Gráfico de Inserção](images/insercao.jpeg)
+![Gráfico de Inserção](gráficos/insercao.jpeg)
 
 ### 3\. Search Hot
 
@@ -84,9 +84,9 @@ Entretanto, para conjuntos de dados menores, o custo adicional das rotações su
 Nos experimentos realizados, observou-se que, para o conjunto em ordem decrescente, a Splay Tree ainda apresenta desempenho inferior para entradas de 10.000 elementos, mas passou a superar as demais estruturas a partir dos 100.000 elementos. Para o conjunto em ordem crescente, verificou-se comportamento semelhante, indicando que a transição ocorreu entre 10.000 e 100.000 elementos. Já para o conjunto aleatório, a Splay Tree somente apresentou vantagem entre 100.000 e 1.000.000 elementos. Assim, os resultados indicam que a vantagem da Splay Tree passa a aparecer apenas para entradas suficientemente grandes. <br>
 Dessa forma, conclui-se que, em cenários com forte localidade de referência, o mecanismo de autoajuste da Splay Tree torna-se mais eficiente à medida que o tamanho da entrada aumenta. Nesses casos, o benefício obtido ao aproximar da raiz os elementos mais acessados passa a compensar o custo adicional das rotações. <br>
 
-![Gráfico de Search Random](images/searchrandom.jpeg)
-![Gráfico de Search Reverse](images/searchreverse.jpeg)
-![Gráfico de Search Sorted](images/searchsorted.jpeg)
+![Gráfico de Search Random](gráficos/searchrandom.jpeg)
+![Gráfico de Search Reverse](gráficos/searchreverse.jpeg)
+![Gráfico de Search Sorted](gráficos/searchsorted.jpeg)
 
 ## Ameaças à validade
 **1\.** Benchmarks dependem fortemente de hardware, SO, JVM e configurações da máquina virtual, então, mesmo com uso do JMH, os resultados podem variar se replicados em diferentes máquinas.

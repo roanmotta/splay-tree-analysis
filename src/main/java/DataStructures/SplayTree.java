@@ -1,5 +1,6 @@
 package DataStructures;
 // Implementação de uma Splay Tree para comparação com outras arvores binárias de pesquisa
+
 public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
 
     private Node <T> root;
@@ -9,7 +10,12 @@ public class SplayTree <T extends Comparable<T>> implements SearchTree<T> {
         this.root = null; this.size = 0;
     }
 
-    // REALIZAR ROTAÇÃO DE UM NÓ ATÉ A RAIZ, AJUSTANDO A ARVORE, AFIM DE TORNAR O NO A NOVA RAIZ
+    /**
+     ** Método diferencial da SplayTree. O método recebe um nó como parametro e realiza
+     * sucessivas rotações até tornar esse nó a nova raiz da arvoré. O resultado esperado
+     *  desse método é aproximar da raiz os últimos elementos acessados.
+     */
+
     private void splay (Node<T> node) {
 
         while (node.parent != null) {
