@@ -1,6 +1,6 @@
 # Splay Tree Analysis 
 
-##  Visão Geral do Projeto
+## Objetivo do Projeto
 
 O objetivo deste projeto é analisar a eficiência e a utilidade da Splay Tree sob diferentes fatores de carga e padrões de acesso, identificando os cenários em que seu mecanismo de autoajuste oferece vantagens reais em relação a estruturas balanceadas tradicionais, além de conter um material didático sobre a estrutura e simular aplicações reais da mesma.
 
@@ -34,19 +34,19 @@ Esse repositório contém um material didático sobre Splay Trees, sua implement
 
 Relatório completo da análise de desempenho da Splay Tree em comparação a outras estruturas (BST, AVL, Red-Black). Inclui a metodologia dos testes, análise de gráficos de busca/inserção, cenários de Hot Search e ameaças à validade.
 
-### 📚 [Material Didático](materialdidatico/materialdidatico.md)
+###  [Material Didático](materialdidatico/materialdidatico.md)
 
 Material didático focado no funcionamento da Splay Tree, na estrutura e padrão da disciplina de Estruturas de Dados e Algoritmos (EDA-UFCG). Abrange conceitos fundamentais, propriedades, principais funções, e exemplos com implementações mais simples para entendimento de alunos (utilização de int em vez de Object).
 
-###  [Implementações das Estruturas](DataStructures/)
+###  [Implementações das Estruturas](src/main/java/DataStructures)
 
 Código em Java da implementação de todas as estruturas de dados analisadas no projeto. Implementações da Splay Tree e das estruturas comparativas (BST, AVL, Red-Black), servindo como base para os benchmarks.
 
-###  [Benchmarks](Bench/)
+###  [Benchmarks](src/main/java/Bench/)
 
 Estrutura de benchmarks desenvolvida para mensurar o tempo de execução e uso de memória das operações sob diferentes cenários de carga, distribuições de dados e frequências de acesso.
 
-###  [Simulação com Dados Reais](simulation/)
+###  [Simulação com Dados Reais](src/main/java/simulation/)
 
 Mapeia um cenário prático no qual a Splay Tree é aplicada a uma base de dados real de livros, demonstrando o ganho de eficiência da propriedade do autoajuste quando há alta localidade de referência (Hot Search) em consultas de sistemas reais.
 

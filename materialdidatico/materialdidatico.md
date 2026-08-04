@@ -29,6 +29,30 @@ Uma **Splay Tree** é uma árvore binária de pesquisa auto-ajustável. A sua pr
 
 A operação Splay consiste em mover o nó acessado até a raiz da árvore por meio de uma sequência de rotações calculadas. Isso garante com que os nós mais acessados frequentemente ficam muito próximos da raiz, reduzindo o custo de acessos subsequentes para quase $O(1)$.
 
+## Exemplo:
+Vamos analisar a árvore desbalanceada abaixo, com raiz em 6:
+<p align="center">
+  <img src="Splay1.png" alt="Árvore desbalanceada" width="30%" vertical-align="middle"/>
+  </p>
+Ao realizar uma busca, por exemplo, no nó 0001, o tempo de busca será O(n), pois a árvore se comporta como uma lista linear, sendo extremamente ineficiente. E caso diversas buscas sejam feitas no nó, todas elas serão extremamente ineficientes. Para mitigar isso, a Splay Tree move o nó acessado até a raiz, fazendo com que outras chamadas por esse elemento sejam extremamente mais eficientes, além de fazer um semi-balanceamento da árvore por meio de rotações.
+<br>
+Após a operação de splay no nó 0001, a árvore vai se organizar da seguinte maneira:
+<p style="margin-top: px;"></p>
+
+<p align="center">
+  <img src="Splay2.png" alt="Árvore splay 1" width="30%" vertical-align="middle"/>
+  </p>
+Percebe-se que o acesso ao nó 0001 se tornou quase instantâneo, e que a operação de splay ajudou a distribuir melhor os nós da árvore, não a balanceando completamente, mas diminuindo sua altura.
+Após a operação de splay agora no nó 0004, tal fato se torna ainda mais visível:
+<p align="center">
+  <img src="Splay3.png" alt="Árvore splay 4" width="30%" vertical-align="middle"/>
+</p>
+O acesso ao elemento 0004 se torna quase instantâneo, o acesso ao nó anterior (0001) também continua muito rápido, e ocorre um semi-balanceamento da árvore, com sua altura diminuindo e elementos ficando mais fáceis de serem acessados.
+
+
+
+
+
 
 ## Como o Splay é feito?
 
@@ -287,9 +311,11 @@ A lógica de remoção na Splay Tree é a seguinte:
 
 # Experimentos
 
-Mas como a Splay Tree funciona, na prática? Para tanto, aqui estão alguns experimentos com casos de busca em Splay Trees organizadas em diferentes maneiras (Ordenadas, inversamente ordenadas, elementos em sequências aleatórias)
+Mas a Splay Tree realmente funciona, na prática? Para tanto, aqui está um experimento:
 
-Caso queria ver mais, [aqui](https://github.com/roanmotta/splay-tree-analysis) está disponível um repositório de experimentos mais detalhados.
+Caso tenha interesse em se aprofundar mais na experimentação, [aqui](https://github.com/roanmotta/splay-tree-analysis) está disponível um repositório contendo um relatório des experimentos.
+
+Caso tenha interesse em se aprofundar ainda mais no conteúdo (e goste de história), [aqui](https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf) está o artigo original de 1985, escrito por Daniel Sleator e Robert Trajan, que contém a criação da Splay Tree.
 
 # Contribuições
 
