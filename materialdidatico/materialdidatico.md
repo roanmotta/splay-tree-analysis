@@ -1,13 +1,6 @@
-+++
-title = "Splay Trees"
-date = 2019-10-14
-tags = []
-categories = []
-+++
+# Splay Trees
 
-***
-
-# Contextualização
+## Contextualização
 
 Árvores binárias são estruturas de dados fundamentais no contexto de Ciência da Computação, especialmente quando aplicadas na solução de diversos problemas que demandam eficiência em operações básicas, como busca. Como visto no material de árvores AVL, o desempenho dessashu operações está diretamente relacionado à altura ($h$) da árvore, resultando em uma complexidade assintótica de $O(h)$. 
 
