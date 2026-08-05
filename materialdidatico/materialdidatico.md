@@ -1,17 +1,15 @@
 +++
 title = "Splay Trees"
-date = 2026-07-15
-draft = true
+date = 2019-10-14
 tags = []
 categories = []
-github = "https://github.com/joaoarthurbm/eda-implementacoes/tree/master/java/src/splaytree"
 +++
 
 ***
 
 # Contextualização
 
-Árvores binárias são estruturas de dados fundamentais no contexto de Ciência da Computação, especialmente quando aplicadas na solução de diversos problemas que demandam eficiência em operações básicas, como busca. Como visto no material de árvores AVL, o desempenho dessas operações está diretamente relacionado à altura ($h$) da árvore, resultando em uma complexidade assintótica de $O(h)$. 
+Árvores binárias são estruturas de dados fundamentais no contexto de Ciência da Computação, especialmente quando aplicadas na solução de diversos problemas que demandam eficiência em operações básicas, como busca. Como visto no material de árvores AVL, o desempenho dessashu operações está diretamente relacionado à altura ($h$) da árvore, resultando em uma complexidade assintótica de $O(h)$. 
 
 Para garantir que a altura permaneça $O(\log n)$, estruturas como AVL e Red-Black Trees impõem restrições rígidas de balanceamento de altura ou propriedades de coloração de nós. No entanto, existem situações reais onde o acesso aos dados não é uniforme, ou seja, alguns elementos são acessados com muito mais frequência do que outros.
 
@@ -19,7 +17,7 @@ Para esses cenários, a **Splay Tree** é uma alternativa dinâmica e eficiente.
 
 # O Problema
 
-Imagine um banco de dados onde $99\%$ das requisições de busca concentram-se em apenas $1\%$ dos elementos. Em uma árvore estritamente balanceada como a AVL, a busca por esses elementos frequentes sempre vai custar $O(\log n)$. 
+Imagine um banco de dados onde **99%** das requisições de busca concentram-se em apenas **1%** dos elementos. Em uma árvore estritamente balanceada como a AVL, a busca por esses elementos frequentes sempre vai custar $O(\log n)$. 
 
 Pior ainda: se a árvore for uma BST comum e esses elementos populares estiverem localizados nas folhas mais profundas, as buscas repetidas custarão um tempo próximo de $O(n)$, degradando o desempenho do sistema.
 
@@ -30,22 +28,24 @@ Uma **Splay Tree** é uma árvore binária de pesquisa auto-ajustável. A sua pr
 A operação Splay consiste em mover o nó acessado até a raiz da árvore por meio de uma sequência de rotações calculadas. Isso garante com que os nós mais acessados frequentemente ficam muito próximos da raiz, reduzindo o custo de acessos subsequentes para quase $O(1)$.
 
 ## Exemplo:
-Vamos analisar a árvore desbalanceada abaixo, com raiz em 6:
+Vamos analisar a árvore desbalanceada abaixo, com raiz em 0006:
 <p align="center">
-  <img src="Splay1.png" alt="Árvore desbalanceada" width="30%" vertical-align="middle"/>
-  </p>
-Ao realizar uma busca, por exemplo, no nó 0001, o tempo de busca será O(n), pois a árvore se comporta como uma lista linear, sendo extremamente ineficiente. E caso diversas buscas sejam feitas no nó, todas elas serão extremamente ineficientes. Para mitigar isso, a Splay Tree move o nó acessado até a raiz, fazendo com que outras chamadas por esse elemento sejam extremamente mais eficientes, além de fazer um semi-balanceamento da árvore por meio de rotações.
-<br>
-Após a operação de splay no nó 0001, a árvore vai se organizar da seguinte maneira:
-<p style="margin-top: px;"></p>
+  <img src="Splay1.png" alt="Árvore desbalanceada" style="width: 250px; max-width: 100%; height: auto;" />
+</p>
+
+Ao realizar uma busca, por exemplo, no nó 0001, o tempo de busca será $O(n)$, pois a árvore se comporta como uma lista encadeada, tornando o acesso extremamente ineficiente. Caso diversas buscas sejam feitas nesse mesmo nó, todas sofrerão com esse alto custo. Para mitigar esse problema, a Splay Tree move o nó acessado para a raiz, fazendo com que chamadas subsequentes por esse elemento tenham custo $O(1)$, além de promover um semi-balanceamento na estrutura por meio de rotações.
+
+Após a operação de *splay* no nó 0001, a árvore se organiza da seguinte maneira:
 
 <p align="center">
-  <img src="Splay2.png" alt="Árvore splay 1" width="30%" vertical-align="middle"/>
-  </p>
-Percebe-se que o acesso ao nó 0001 se tornou quase instantâneo, e que a operação de splay ajudou a distribuir melhor os nós da árvore, não a balanceando completamente, mas diminuindo sua altura.
-Após a operação de splay agora no nó 0004, tal fato se torna ainda mais visível:
+  <img src="Splay2.png" alt="Árvore splay 1" style="width: 250px; max-width: 100%; height: auto;" />
+</p>
+
+Percebe-se que o acesso ao nó 0001 se tornou quase instantâneo e que a operação de *splay* ajudou a distribuir melhor os nós da árvore — reduzindo a sua altura total, ainda que não a balanceie de forma estrita.
+Ao executar novamente a operação de *splay*, dessa vez no nó 0004, o ganho no reequilíbrio fica ainda mais visível:
+
 <p align="center">
-  <img src="Splay3.png" alt="Árvore splay 4" width="30%" vertical-align="middle"/>
+  <img src="Splay3.png" alt="Árvore splay 4" style="width: 250px; max-width: 100%; height: auto;" />
 </p>
 O acesso ao elemento 0004 se torna quase instantâneo, o acesso ao nó anterior (0001) também continua muito rápido, e ocorre um semi-balanceamento da árvore, com sua altura diminuindo e elementos ficando mais fáceis de serem acessados.
 
@@ -311,11 +311,25 @@ A lógica de remoção na Splay Tree é a seguinte:
 
 # Experimentos
 
-Mas a Splay Tree realmente funciona, na prática? Para tanto, aqui está um experimento:
+Mas a Splay Tree realmente funciona, na prática? Para tanto, aqui está um resumo de um experimento feito para avaliar a eficácia da Splay Tree em comparação com uma estrutura balanceada:
 
-Caso tenha interesse em se aprofundar mais na experimentação, [aqui](https://github.com/roanmotta/splay-tree-analysis) está disponível um repositório contendo um relatório des experimentos.
+O gráfico abaixo mostra a eficácia de uma **busca convencional** em duas estruturas: A SplayTree e a AVLTree (balanceada). Percebe-se que, para diferentes números de elementos pesquisados, a AVLTree sempre tem um desempenho melhor que a SplayTree, devido a seu autobalanceamento.
 
-Caso tenha interesse em se aprofundar ainda mais no conteúdo (e goste de história), [aqui](https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf) está o artigo original de 1985, escrito por Daniel Sleator e Robert Trajan, que contém a criação da Splay Tree.
+<p align="center">
+  <img src="buscanormal.jpeg" width="67%" alt="Gráfico busca normal">
+</p>
+
+Porém, ao **concentrar as buscas** para somente um número específico de elementos (nesse caso, 10 elementos), percebe-se que, após um certo número de elementos (nesse caso, próximo dos 100K), a SplayTree se torna **mais eficiente** que a AVLTree, devido a sua propriedade de mover os elementos mais acessados para perto da raiz.
+
+<p align="center">
+  <img src="buscaconcentrada.jpeg" width="67%" alt="Gráfico busca concentrada">
+</p>
+
+
+
+Caso tenha interesse em se aprofundar mais na experimentação, **[aqui](https://github.com/roanmotta/splay-tree-analysis)** está disponível um repositório sobre splaytrees, que contém um [relatório](https://github.com/roanmotta/splay-tree-analysis/experimentreports/experimentreports.md) sobre a experimentação e comparação dessa estrutura com outras.
+
+Caso tenha interesse em se aprofundar ainda mais no conteúdo (e goste de história), [aqui](https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf) está o artigo original de 1985, escrito por Daniel Sleator e Robert Tarjan, que contém a criação da Splay Tree.
 
 # Contribuições
 
