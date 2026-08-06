@@ -21,9 +21,9 @@ Assim utilizou-se a **Distribuição de Pareto** com o intuito de concentrar 80%
 
 ### 2.3 Lógica da simulação
 
-O arquivo **SimulationTree.java** utiliza as ferramentas presentes na pasta **utils**, gerando um arquivo com o tempode execução usando AVL, RedBlackTree e SplayTree nas buscas, para demonstrar que com grande quantidade de buscas a SplayTree se sai melhor.
+O arquivo **SimulationTree.java** utiliza as ferramentas presentes na pasta **utils**, gerando um arquivo com o tempo de execução usando AVL, RedBlackTree e SplayTree nas buscas, para demonstrar que com grande quantidade de buscas a SplayTree se sai melhor.
 
-A pasta util lê os dados do arquivo livros.csv, utiliza a lógica de pareto, analisa o tempo de execução de buscas com AVL, RedBlackTree e SplayTree, al[em de criar um arquivo com os resultados dos tempos das buscas. 
+A pasta util lê os dados do arquivo livros.csv, utiliza a lógica de pareto, analisa o tempo de execução de buscas com AVL, RedBlackTree e SplayTree, além de criar um arquivo com os resultados dos tempos das buscas. 
 
 ---
 
