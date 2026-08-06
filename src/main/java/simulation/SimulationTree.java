@@ -1,7 +1,7 @@
 package simulation;
 
 import java.util.List;
-
+import simulation.utils.*;
 import DataStructures.AVLTree;
 import DataStructures.RedBlackTree;
 import DataStructures.SplayTree;
@@ -16,8 +16,8 @@ public class SimulationTree {
         ParetoGenerator pareto = new ParetoGenerator();
         TreeTimer benchmark = new TreeTimer();
 
-        String inputFilePath = "src/main/resources/livros.csv";
-        String outputFilePath = "experiment_reports/pareto_simulation_results.csv";
+        String inputFilePath = "src/main/java/simulation/resources/livros.csv";
+        String outputFilePath = "src/main/java/simulation/simulationResults/results.csv";
 
         // Quantidade total de consultas a serem simuladas
         int totalSearches = 10000;

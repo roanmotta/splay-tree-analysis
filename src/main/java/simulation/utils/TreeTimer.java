@@ -1,4 +1,4 @@
-package simulation;
+package simulation.utils;
 
 import java.util.List;
 import DataStructures.AVLTree;

@@ -1,4 +1,4 @@
-package simulation;
+package simulation.utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

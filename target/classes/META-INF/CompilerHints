@@ -1,0 +1,10 @@
+dontinline,*.*_all_jmhStub
+dontinline,*.*_avgt_jmhStub
+dontinline,*.*_sample_jmhStub
+dontinline,*.*_ss_jmhStub
+dontinline,*.*_thrpt_jmhStub
+inline,Bench/HotSearchBenchmark.searchHot
+inline,Bench/HotSearchBenchmark.setup
+inline,Bench/InsertAndSearchBenchmark.insert
+inline,Bench/InsertAndSearchBenchmark.search
+inline,Bench/InsertAndSearchBenchmark.setup
