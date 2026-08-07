@@ -46,7 +46,7 @@ Código em Java da implementação de todas as estruturas de dados analisadas no
 
 Estrutura de benchmarks desenvolvida para mensurar o tempo de execução e uso de memória das operações sob diferentes cenários de carga, distribuições de dados e frequências de acesso.
 
-###  [Simulação com Dados Reais](src/main/java/simulation/)
+###  [Simulação com Dados Reais](src/main/java/simulation/simulation.md)
 
 Mapeia um cenário prático no qual a Splay Tree é aplicada a uma base de dados real de livros, demonstrando o ganho de eficiência da propriedade do autoajuste quando há alta localidade de referência (Hot Search) em consultas de sistemas reais.
 

@@ -21,10 +21,29 @@ Assim utilizou-se a **Distribuição de Pareto** com o intuito de concentrar 80%
 
 ### 2.3 Lógica da simulação
 
-O arquivo **SimulationTree.java** utiliza as ferramentas presentes na pasta **utils**, gerando um arquivo com o tempo de execução usando AVL, RedBlackTree e SplayTree nas buscas, para demonstrar que com grande quantidade de buscas a SplayTree se sai melhor.
+O arquivo **SimulationMain.java** utiliza as ferramentas presentes na pasta **utils**, gerando uma pasta **results** com um arquivo com o tempo de execução usando AVL, RedBlackTree e SplayTree nas buscas, para demonstrar que com grande quantidade de buscas a SplayTree se sai melhor.
 
-A pasta util lê os dados do arquivo livros.csv, utiliza a lógica de pareto, analisa o tempo de execução de buscas com AVL, RedBlackTree e SplayTree, além de criar um arquivo com os resultados dos tempos das buscas. 
+A pasta util lê os dados do arquivo livros.csv, utiliza a lógica de pareto, analisa o tempo de execução de buscas com AVL, RedBlackTree e SplayTree, além de criar um arquivo com os resultados dos tempos das buscas.
 
+---
+
+## 3. Estrutura de simulation 
+
+```bash
+src/main/java/simulation/           # Pacote principal da simulação
+    ├── simulation.md               # Documentação da pasta simulation
+    ├── SimulationMain.java         # Main que executa a simulação
+    │
+    ├── utils/                      # Classes utilitárias da simulação
+    │   ├── CSVReader.java          # lê o arquivo livros.csv
+    │   ├── CSVWriter.java          # Responsável por exportar os resultados da simulação
+    │   ├── Livro.java              # Armazena os dados de livros.csv
+    │   ├── ParetoGenerator.java    # Faz a lógica do princípio de pareto
+    │   └── TreeTimer.java          # Responsável por cronometrar a execução
+    │
+    └── results/                    # pasta criada automaticamente **após** rodar a simulação
+        └── results.csv             # Arquivo com as métricas de tempo geradas pelo CSVWriter
+```
 ---
 
 ## 4. Como Rodar a Simulação
@@ -36,13 +55,13 @@ A pasta util lê os dados do arquivo livros.csv, utiliza a lógica de pareto, an
 
 Na raiz do projeto, compile e execute a simulação com os seguintes comandos:
 1. **Compilar os Arquivos Java:**
-   ```
-   javac -sourcepath src/main/java src/main/java/simulation/SimulationTree.java
+   ```bash
+   javac -sourcepath src/main/java src/main/java/simulation/SimulationMain.java
    ```
 
 2. **Executar a Simulação:**
-   ```
-   java -cp src/main/java simulation.SimulationTree
+   ```bash
+   java -cp src/main/java simulation.SimulationMain
    ```
 
 ---

@@ -10,14 +10,14 @@ import DataStructures.SplayTree;
  * Classe principal responsável por executar a simulação de buscas
  * sob a distribuição de Pareto em árvores Splay, AVL e Red-Black.
  */
-public class SimulationTree {
+public class SimulationMain {
     public static void main(String[] args) {
         CSVReader reader = new CSVReader();
         ParetoGenerator pareto = new ParetoGenerator();
         TreeTimer benchmark = new TreeTimer();
 
         String inputFilePath = "src/main/java/simulation/resources/livros.csv";
-        String outputFilePath = "src/main/java/simulation/simulationResults/results.csv";
+        String outputFilePath = "src/main/java/simulation/results/results.csv";
 
         // Quantidade total de consultas a serem simuladas
         int totalSearches = 10000;
